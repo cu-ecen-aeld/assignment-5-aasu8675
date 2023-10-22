@@ -1,0 +1,33 @@
+# Author: Aamir Suhail Burhan
+#!/bin/sh
+
+case "$1" in
+  start)
+    # Load the scull driver on startup
+    scull_load
+
+    # Load the faulty driver on startup
+    module_load faulty
+
+    # Load the hello module on startup
+    modprobe hello
+
+    echo "End of ldd module load"
+    ;;
+  stop)
+    # Unload the hello module on shutdown
+    rmmod hello
+
+    # Unload the faulty driver on shutdown
+    module_unload faulty
+
+    # Unload the scull driver on shutdown
+    scull_unload
+
+    echo "End of ldd module unload"
+    ;;
+  *)
+    echo "Usage: $0 {start|stop}"
+    exit 1
+    ;;
+esac

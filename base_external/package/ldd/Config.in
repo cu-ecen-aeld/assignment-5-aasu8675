@@ -1,0 +1,4 @@
+config BR2_PACKAGE_LDD
+	bool "LDD"
+	help
+	  Package for Linux Device Driver
